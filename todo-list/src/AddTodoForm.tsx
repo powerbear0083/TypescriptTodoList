@@ -11,22 +11,26 @@ export const AddTodoForm = (
 ) => {
     const initText: string = '';
     const [text, setText] = useState(initText);
+    
+    function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setText(e.target.value);
+    }
+    
+    function onSubmit(e: React.FormEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        addTodo(text);
+        setText(initText);
+    }
     return (
         <form>
             <input 
                 type="text"
                 value={text}
-                onChange={(e) => {
-                    setText(e.target.value);
-                }}
+                onChange={onChange}
             />
             <button 
                 type="submit"
-                onClick={(e) => {
-                    e.preventDefault();
-                    addTodo(text);
-                    setText('');
-                }}
+                onClick={onSubmit}
             >Add Todo</button>
         </form>
     )
