@@ -30,7 +30,7 @@ function App() {
         setTodos(newTodos);
     }
     
-    function addTodo(text: string): void {
+    function addTodo(text: string) {
         const newTodo = { text, complete: false };
         setTodos([...todos, newTodo]);
     }
