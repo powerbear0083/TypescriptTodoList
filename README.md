@@ -40,3 +40,41 @@ const initialTodos: Todo[] = [
 
 const [todos, setTodos] = useState(initialTodos);
 ```
+
+## 元件 Props 型別定義
+
+```
+// 元件
+<TodoList
+    todos={todos}
+    toggleTodo={toggleTodo}
+/>
+```
+
+```
+type Props = {
+    todos: Todo[];
+    toggleTodo: ToggleTodo;
+}
+
+export const TodoList = (
+    { 
+        todos, 
+        toggleTodo 
+    }: Props
+) => {
+    return (
+        <ul>
+            {
+                todos.map((todo:Todo) => (
+                    <TodoListItem
+                        key={todo.text}
+                        todo={todo}
+                        toggleTodo={toggleTodo}
+                    />
+                ))
+            }
+        </ul>
+    )
+}
+```
