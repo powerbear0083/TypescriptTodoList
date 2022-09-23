@@ -1,4 +1,4 @@
-## 簡單的心得
+## 簡單心得
 
 ## types.d.ts 
 * 可以用來定義全域型別
@@ -44,7 +44,7 @@ const [todos, setTodos] = useState(initialTodos);
 ## 元件 Props 型別定義
 
 ```
-// 元件
+// 父元件
 <TodoList
     todos={todos}
     toggleTodo={toggleTodo}
@@ -52,11 +52,13 @@ const [todos, setTodos] = useState(initialTodos);
 ```
 
 ```
+// 定義子元件 props 型別
 type Props = {
-    todos: Todo[];
-    toggleTodo: ToggleTodo;
+    todos: Todo[]; // todos 為 array 型別，裡面的資料型別定義在 Todo
+    toggleTodo: ToggleTodo; // toggleTodo 為 function 型別，裡面的資料型別定義在 ToggleTodo
 }
 
+// 子元件 porps 使用 example
 export const TodoList = (
     { 
         todos, 
@@ -77,4 +79,20 @@ export const TodoList = (
         </ul>
     )
 }
+```
+
+## 渲覽 list example
+```
+// todo:Todo 把 todo 內的型別定義在 Todo 裡
+<ul>
+    {
+        todos.map((todo:Todo) => (
+            <TodoListItem
+                key={todo.text}
+                todo={todo}
+                toggleTodo={toggleTodo}
+            />
+        ))
+    }
+</ul>
 ```
